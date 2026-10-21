@@ -1,0 +1,11 @@
+services:
+  totaljobs-scraper:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      # Recommended — Akamai refuses datacenter IPs, so use a UK residential proxy.
+      # `{country}` in the URL is filled with `gb`.
+      # - TOTALJOBS_PROXY=http://user:pass@host:port

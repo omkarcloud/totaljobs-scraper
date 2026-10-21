@@ -1,0 +1,102 @@
+@baseUrl = http://127.0.0.1:6071
+# @baseUrl = https://totaljobs-scraper.omkar.cloud
+
+# ========================================
+# JOBS
+# ========================================
+
+### Job search (keyword + location; 25 a page)
+GET {{baseUrl}}/totaljobs/jobs/search?keyword=python+developer&location=London
+
+### Job search, page 2
+GET {{baseUrl}}/totaljobs/jobs/search?keyword=python+developer&location=London&page=2
+
+### Job search with every filter, newest first
+GET {{baseUrl}}/totaljobs/jobs/search?keyword=nurse&location=Manchester&radius=20&posted_within=7_days&job_type=permanent&company_type=direct_employer&salary_min=30000&remote=none&sort=date
+
+### Job search by location only
+GET {{baseUrl}}/totaljobs/jobs/search?location=Leeds
+
+### Job search by skill id (from /jobs/filters)
+GET {{baseUrl}}/totaljobs/jobs/search?keyword=python&skill=659280
+
+### Facets with counts + nearby locations + popular searches
+GET {{baseUrl}}/totaljobs/jobs/filters?keyword=python+developer&location=London
+
+### Market stats for a query (no rows)
+GET {{baseUrl}}/totaljobs/jobs/stats?keyword=data+analyst&location=Bristol
+
+### Market stats, whole UK board
+GET {{baseUrl}}/totaljobs/jobs/stats
+
+### Job details by id
+GET {{baseUrl}}/totaljobs/jobs/details?job=108167578
+
+### Job details by link
+GET {{baseUrl}}/totaljobs/jobs/details?job=https://www.totaljobs.com/job/python-developer/anson-mccade-job108167578
+
+### Batch of jobs (up to 10)
+GET {{baseUrl}}/totaljobs/jobs/batch?jobs=108167578,108061802
+
+### Similar jobs
+GET {{baseUrl}}/totaljobs/jobs/similar?job=108167578
+
+### Any search / company listing link, page by page
+GET {{baseUrl}}/totaljobs/jobs/by-link?link=https://www.totaljobs.com/jobs/python/in-london?radius=30%26postedWithin=7
+
+### Company listing link (/jobs-at/…)
+GET {{baseUrl}}/totaljobs/jobs/by-link?link=https://www.totaljobs.com/jobs-at/tesco&page=2
+
+# ========================================
+# COMPANIES
+# ========================================
+
+### Company by id
+GET {{baseUrl}}/totaljobs/companies/details?company=1231308
+
+### Company by name
+GET {{baseUrl}}/totaljobs/companies/details?company=tesco
+
+### Company by link
+GET {{baseUrl}}/totaljobs/companies/details?company=https://www.totaljobs.com/jobs/anson-mccade?cmpId=1231308
+
+### Company jobs with filters
+GET {{baseUrl}}/totaljobs/companies/jobs?company=tesco&job_type=part_time&sort=date
+
+# ========================================
+# LOOKUPS
+# ========================================
+
+### Autocomplete job titles
+GET {{baseUrl}}/totaljobs/autocomplete?query=pyth
+
+### Popular searches + locations around a place
+GET {{baseUrl}}/totaljobs/searches/popular?location=Manchester
+
+### Popular locations UK-wide
+GET {{baseUrl}}/totaljobs/searches/popular
+
+# ========================================
+# ADVICE (career library)
+# ========================================
+
+### Job-description role profiles (default topic) + sector subtopics
+GET {{baseUrl}}/totaljobs/advice/articles
+
+### A sector's role profiles, page 2
+GET {{baseUrl}}/totaljobs/advice/articles?topic=engineering-job-descriptions&page=2
+
+### Another topic hub
+GET {{baseUrl}}/totaljobs/advice/articles?topic=cvs
+
+### One article in full
+GET {{baseUrl}}/totaljobs/advice/details?article=sous-chef-job-description
+
+### Article by link
+GET {{baseUrl}}/totaljobs/advice/details?article=https://www.totaljobs.com/advice/teacher-job-description
+
+### Search the library
+GET {{baseUrl}}/totaljobs/advice/search?query=interview
+
+### Search, page 2
+GET {{baseUrl}}/totaljobs/advice/search?query=interview&page=2
