@@ -25,7 +25,7 @@ variants, fingerprintCount / jobPostingSequence / cvToJobScore /
 travelTime (always null for anonymous visitors), the Google Maps API key and
 the commute-time service config.
 """
-import json
+import fastjson
 import re
 from html.parser import HTMLParser
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
@@ -98,7 +98,7 @@ def _load(raw):
     if not raw:
         return None
     try:
-        return json.loads(_UNDEFINED_RE.sub(":null", raw))
+        return fastjson.loads(_UNDEFINED_RE.sub(":null", raw))
     except ValueError:
         return None
 
@@ -128,7 +128,7 @@ def json_ld(html, type_name):
     """The first JSON-LD block of `type_name` ("JobPosting") in the page."""
     for block in _LD_RE.findall(html or ""):
         try:
-            data = json.loads(block)
+            data = fastjson.loads(block)
         except ValueError:
             continue
         for item in data if isinstance(data, list) else [data]:
